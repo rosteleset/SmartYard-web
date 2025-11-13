@@ -88,3 +88,47 @@ web-расширения для приложений
 	}
 }
 ```
+
+# Обращение к мобильному API
+
+```
+<html>
+    <body>
+        pizza.html
+
+	    <script>
+	
+			if (typeof bearerToken != 'function' && Android) {
+				bearerToken = function() {
+					return Android.bearerToken();
+				}
+			}
+	
+			if (typeof bearerToken != 'function') {
+				bearerToken = function() {
+					return (new URL(document.location.href)).searchParams.get('token');
+				}
+			}
+	
+			alert(bearerToken());
+	
+			fetch('https://ВАШ_СЕРВЕР/mobile/address/offices', {
+				method: 'POST',
+				headers: {
+					'Authorization': 'Bearer ' + bearerToken(),
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					a: 1,
+					b: 'Textual content'
+				}),
+			}).
+			then(res => { return res.json(); }).
+			then(data => { alert(JSON.stringify(data)); }).
+			catch(error => { alert(error); });
+	    </script>
+    </body>
+</html>
+
+```
