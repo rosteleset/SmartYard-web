@@ -164,8 +164,8 @@ web-расширения для приложений
     switch ($postdata['extId']) {
         case "10002":
             response(200, [
-                "basePath" => "https://rbt-ws.lanta.me/static/portal/pizza.html",
-                "code" => @file_get_contents("https://rbt-ws.lanta.me/static/portal/pizza.html"),
+                "basePath" => "https://ВАШ_СЕРВЕР/static/portal/pizza.html",
+                "code" => @file_get_contents("/opt/rbt/static/portal/pizza.html"),
             ]);
             break;
 
